@@ -1,0 +1,52 @@
+```html
+<ul>
+    <li><strong>Accessibility Levels in Java:</strong>
+        <ul>
+            <li><strong>Private:</strong>
+                <ul>
+                    <li>Accessible only within the class where it is defined.</li>
+                    <li>Cannot be accessed from outside the class, not even by subclasses or other classes in the same package.</li>
+                </ul>
+            </li>
+            <li><strong>Default (Package-Private):</strong>
+                <ul>
+                    <li>If no access modifier is specified, the member is accessible only within its own package.</li>
+                    <li>Accessible by any class within the same package but not from classes in different packages.</li>
+                </ul>
+            </li>
+            <li><strong>Protected:</strong>
+                <ul>
+                    <li>Accessible within the same package and by subclasses in other packages.</li>
+                    <li>Allows subclasses to access members of the superclass, even if they are in different packages.</li>
+                </ul>
+            </li>
+            <li><strong>Public:</strong>
+                <ul>
+                    <li>Accessible from any other class, regardless of the package.</li>
+                    <li>No restrictions on access, making it the most permissive access level.</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    
+    <li><strong>Tricky Interview Questions:</strong>
+        <ul>
+            <li><strong>Question:</strong> "Can a subclass in a different package access a protected member of its superclass?"</li>
+            <li><strong>Answer:</strong> "Yes, a subclass in a different package can access a protected member of its superclass, but it cannot access it through an instance of the superclass—only through inheritance."</li>
+            <li><strong>Explanation:</strong> "Protected members are accessible within the same package and by subclasses, even if the subclass is in a different package. However, outside the package, access must be through inheritance (i.e., `super.memberName`)."</li>
+
+            <li><strong>Question:</strong> "What happens if you don't specify an access modifier in Java?"</li>
+            <li><strong>Answer:</strong> "If no access modifier is specified, the member has default (package-private) access. This means it is accessible only within the same package."</li>
+            <li><strong>Explanation:</strong> "The default access level is often overlooked. It's important to remember that without an explicit modifier, access is restricted to the package level."</li>
+
+            <li><strong>Question:</strong> "Can a private method in a superclass be overridden by a subclass?"</li>
+            <li><strong>Answer:</strong> "No, a private method in a superclass cannot be overridden by a subclass because private methods are not inherited by subclasses."</li>
+            <li><strong>Explanation:</strong> "Since private methods are not visible to subclasses, they cannot be overridden. The subclass can define a new method with the same name, but it's not considered an override."</li>
+
+            <li><strong>Question:</strong> "Is it possible to reduce the visibility of an overridden method in a subclass?"</li>
+            <li><strong>Answer:</strong> "No, you cannot reduce the visibility of an overridden method. The overridden method in the subclass must have the same or greater visibility."</li>
+            <li><strong>Explanation:</strong> "For example, if a method in the superclass is public, the overriding method in the subclass must also be public. You cannot make it protected or private."</li>
+        </ul>
+    </li>
+</ul>
+```

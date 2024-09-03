@@ -1,0 +1,205 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Method Overriding in Java - Detailed Explanation and Interview Questions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h2 {
+            color: #2c3e50;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Method Overriding in Java</h2>
+    <p>Method overriding is a feature in Java that allows a subclass to provide a specific implementation of a method that is already defined in its superclass. When a method in a subclass has the same name, return type, and parameters as a method in its superclass, the method in the subclass overrides the method in the superclass. Method overriding is a key component of runtime polymorphism in Java.</p>
+    
+    <h3>Key Points About Method Overriding</h3>
+    <ul>
+        <li>The method in the subclass must have the same name, return type, and parameter list as the method in the superclass.</li>
+        <li>The access level of the overriding method cannot be more restrictive than the overridden method.</li>
+        <li>Instance methods can be overridden, but static methods cannot. If you declare a static method with the same signature as a static method in the superclass, it hides the superclass method rather than overrides it.</li>
+        <li>Final methods cannot be overridden.</li>
+        <li>Constructors cannot be overridden.</li>
+        <li>Overriding methods can throw unchecked exceptions, but if the superclass method throws a checked exception, the overriding method can only throw the same exception or its subclasses.</li>
+    </ul>
+    
+    <h3>Example of Method Overriding</h3>
+    <p>Let's consider a simple example to understand method overriding:</p>
+    
+    <pre><code>class Animal {
+    // Superclass method
+    public void sound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    // Subclass overriding the superclass method
+    @Override
+    public void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal myAnimal = new Animal(); // Create an Animal object
+        Animal myDog = new Dog(); // Create a Dog object
+        
+        myAnimal.sound(); // Output: Animal makes a sound
+        myDog.sound(); // Output: Dog barks (method overridden)
+    }
+}</code></pre>
+    
+    <h3>Explanation:</h3>
+    <ul>
+        <li>The <code>Animal</code> class has a method named <code>sound()</code> that prints "Animal makes a sound".</li>
+        <li>The <code>Dog</code> class extends the <code>Animal</code> class and overrides the <code>sound()</code> method to print "Dog barks".</li>
+        <li>In the <code>Main</code> class, we create an <code>Animal</code> object and a <code>Dog</code> object, both of which are of type <code>Animal</code>.</li>
+        <li>When <code>myDog.sound()</code> is called, the overridden method in the <code>Dog</code> class is executed, demonstrating runtime polymorphism.</li>
+    </ul>
+    
+    <h2>Tricky Interview Questions on Method Overriding</h2>
+    
+    <h3>1. Can we override a static method?</h3>
+    <p><strong>Answer:</strong> No, we cannot override a static method. Static methods belong to the class rather than instances of the class, so they cannot be overridden in the subclass. If a static method is declared with the same signature in a subclass, it hides the static method from the superclass.</p>
+    
+    <pre><code>class Parent {
+    static void display() {
+        System.out.println("Static method in Parent");
+    }
+}
+
+class Child extends Parent {
+    static void display() {
+        System.out.println("Static method in Child");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Parent obj = new Child();
+        obj.display(); // Output: Static method in Parent (hiding, not overriding)
+    }
+}</code></pre>
+
+    <h3>2. Can we override a private method?</h3>
+    <p><strong>Answer:</strong> No, private methods cannot be overridden because they are not visible to the subclass. If a subclass declares a method with the same name and parameters, it is treated as a new method and not an overridden method.</p>
+    
+    <pre><code>class Parent {
+    private void display() {
+        System.out.println("Private method in Parent");
+    }
+}
+
+class Child extends Parent {
+    private void display() {
+        System.out.println("Private method in Child");
+    }
+    
+    public static void main(String[] args) {
+        Child obj = new Child();
+        obj.display(); // Output: Private method in Child
+    }
+}</code></pre>
+
+    <h3>3. What is covariant return type in method overriding?</h3>
+    <p><strong>Answer:</strong> Covariant return type allows the overriding method in a subclass to return a type that is a subclass of the return type declared in the superclass method. This feature was introduced in Java 5.</p>
+    
+    <pre><code>class Parent {
+    Parent get() {
+        return this;
+    }
+}
+
+class Child extends Parent {
+    @Override
+    Child get() {
+        return this;
+    }
+    
+    void display() {
+        System.out.println("Child class method");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        new Child().get().display(); // Output: Child class method
+    }
+}</code></pre>
+    
+    <h3>4. Can the access modifier of the overriding method be more restrictive?</h3>
+    <p><strong>Answer:</strong> No, the access modifier of the overriding method cannot be more restrictive than the method being overridden. For example, if the superclass method is <code>public</code>, the overriding method in the subclass cannot be <code>protected</code> or <code>private</code>.</p>
+    
+    <pre><code>class Parent {
+    public void show() {
+        System.out.println("Parent class method");
+    }
+}
+
+class Child extends Parent {
+    // This would cause a compile-time error
+    // protected void show() {
+    //     System.out.println("Child class method");
+    // }
+    
+    // Correct way:
+    public void show() {
+        System.out.println("Child class method");
+    }
+    
+    public static void main(String[] args) {
+        Child obj = new Child();
+        obj.show(); // Output: Child class method
+    }
+}</code></pre>
+
+    <h3>5. What is the difference between method overloading and method overriding?</h3>
+    <p><strong>Answer:</strong> Method overloading occurs when two or more methods in the same class have the same name but different parameter lists. It is an example of compile-time polymorphism. Method overriding, on the other hand, occurs when a subclass provides a specific implementation of a method that is already defined in its superclass. It is an example of runtime polymorphism.</p>
+
+    <h3>6. Can we override the final method?</h3>
+    <p><strong>Answer:</strong> No, a final method cannot be overridden. If a method is marked as <code>final</code>, it cannot be overridden by subclasses. This is used to prevent modification of the method's behavior by subclasses.</p>
+
+    <pre><code>class Parent {
+    public final void show() {
+        System.out.println("Final method in Parent");
+    }
+}
+
+class Child extends Parent {
+    // This would cause a compile-time error
+    // public void show() {
+    //     System.out.println("Attempting to override final method");
+    // }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Child obj = new Child();
+        obj.show(); // Output: Final method in Parent
+    }
+}</code></pre>
+
+</body>
+</html>
+```

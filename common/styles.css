@@ -1,0 +1,137 @@
+body {
+    background-color: #f0f4f8;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+.navbar {
+    background-color: #343a40;
+}
+
+.navbar-brand,
+.nav-link {
+    color: #ffffff !important;
+}
+
+.container {
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.section-title {
+    background-color: #e9f7fe;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.content {
+    padding: 15px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+
+}
+
+.content img {
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+.interview-question {
+    background-color: #e9f7fe;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.interview-answer {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.footer {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+.code-container {
+    background-color: #f6f8fa;
+    border: 1px solid #0e0d0d;
+    border-radius: 5px;
+    padding: 15px;
+    overflow-x: auto;
+} 
+
+pre {
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+code {
+    color: #c7254e;
+    background-color: #f9f2f4;
+    padding: 2px 4px;
+    border-radius: 4px;
+    display: block;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+th {
+    background-color: #f4f4f4;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.collapsible-container {
+    margin: 20px;
+    width: 100%;
+}
+
+.collapsible {
+    background-color: #343a40;
+    color: white;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    border-radius: 5px;
+    display: inline-block; /* Makes the button only as wide as its content */
+}
+
+.collapsible:hover {
+    background-color: #50575e;
+}
+.example {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-left: 5px solid #007BFF;
+    margin-bottom: 20px;
+}
+.step {
+    margin-bottom: 15px;
+}
+.step span {
+    font-weight: bold;
+    color: #44505c;
+}

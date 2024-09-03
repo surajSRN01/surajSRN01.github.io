@@ -1,0 +1,161 @@
+Here's a point-wise explanation of HTTP/HTTPS, including what they are, how they work, why and where they are used, internal details, and the handshaking mechanism.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding HTTP/HTTPS and Handshaking Mechanism</title>
+</head>
+<body>
+    <h1>Understanding HTTP/HTTPS and Handshaking Mechanism</h1>
+
+    <h2>1. What is HTTP/HTTPS?</h2>
+    <ul>
+        <li><strong>HTTP (Hypertext Transfer Protocol):</strong>
+            <ul>
+                <li>An application-layer protocol used for transmitting hypermedia documents, such as HTML.</li>
+                <li>HTTP is the foundation of data communication on the World Wide Web.</li>
+                <li>It is a stateless protocol, meaning each request from a client to server is independent, and the server does not retain user state between requests.</li>
+            </ul>
+        </li>
+        <li><strong>HTTPS (Hypertext Transfer Protocol Secure):</strong>
+            <ul>
+                <li>An extension of HTTP, where communication between the client and server is encrypted using TLS (Transport Layer Security) or SSL (Secure Sockets Layer).</li>
+                <li>HTTPS ensures the confidentiality, integrity, and authenticity of data exchanged between the client and server.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>2. How HTTP/HTTPS Works</h2>
+    <ul>
+        <li><strong>HTTP:</strong>
+            <ul>
+                <li>The client (usually a web browser) sends an HTTP request to the server, typically requesting a resource like a web page.</li>
+                <li>The server processes the request and sends back an HTTP response, which usually contains the requested resource (e.g., an HTML file, image, etc.).</li>
+                <li>HTTP operates over TCP (Transmission Control Protocol), usually on port 80.</li>
+            </ul>
+        </li>
+        <li><strong>HTTPS:</strong>
+            <ul>
+                <li>HTTPS follows the same process as HTTP, but before data is sent, the client and server establish a secure connection using SSL/TLS.</li>
+                <li>This secure connection ensures that the data exchanged is encrypted, preventing eavesdropping and tampering.</li>
+                <li>HTTPS typically operates over port 443.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>3. Why HTTP/HTTPS is Used</h2>
+    <ul>
+        <li><strong>HTTP:</strong>
+            <ul>
+                <li>To request and receive web resources such as HTML pages, images, and other multimedia content.</li>
+                <li>Facilitates communication between web browsers and servers on the internet.</li>
+                <li>Supports various methods like GET, POST, PUT, DELETE, etc., to interact with resources on the server.</li>
+            </ul>
+        </li>
+        <li><strong>HTTPS:</strong>
+            <ul>
+                <li>To secure data transmission between clients and servers, protecting sensitive information (e.g., login credentials, payment details).</li>
+                <li>Ensures that the data exchanged is not intercepted, tampered with, or forged by attackers.</li>
+                <li>Provides authentication to confirm the identity of the communicating parties.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>4. Where HTTP/HTTPS is Used</h2>
+    <ul>
+        <li><strong>HTTP:</strong>
+            <ul>
+                <li>Standard websites where security is not a major concern (e.g., public information sites, blogs).</li>
+                <li>APIs and services that do not handle sensitive data.</li>
+            </ul>
+        </li>
+        <li><strong>HTTPS:</strong>
+            <ul>
+                <li>Websites that handle sensitive data (e.g., banking sites, e-commerce platforms, login pages).</li>
+                <li>APIs and services that require data integrity and confidentiality.</li>
+                <li>Websites that need to comply with security standards and regulations (e.g., PCI-DSS for payment processing).</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>5. Internal Details of HTTP/HTTPS</h2>
+    <ul>
+        <li><strong>HTTP Structure:</strong>
+            <ul>
+                <li>HTTP requests and responses consist of a start-line, headers, and an optional body.</li>
+                <li>Start-Line: Includes the method (e.g., GET, POST), the resource URL, and the HTTP version.</li>
+                <li>Headers: Provide additional information like content type, content length, cookies, etc.</li>
+                <li>Body: Contains the data being sent (optional, used in POST, PUT methods).</li>
+            </ul>
+        </li>
+        <li><strong>HTTPS Structure:</strong>
+            <ul>
+                <li>In HTTPS, the HTTP data is encrypted using SSL/TLS before transmission.</li>
+                <li>SSL/TLS provides three main services:
+                    <ul>
+                        <li><strong>Encryption:</strong> Ensures that the data cannot be read by unauthorized parties.</li>
+                        <li><strong>Data Integrity:</strong> Ensures that the data has not been altered during transmission.</li>
+                        <li><strong>Authentication:</strong> Confirms that the parties involved in the communication are who they claim to be.</li>
+                    </ul>
+                </li>
+                <li>HTTPS adds an overhead due to the encryption/decryption process but is essential for secure communication.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>6. Handshaking Mechanism in HTTPS (SSL/TLS Handshake)</h2>
+    <ul>
+        <li><strong>Step 1: Client Hello</strong>
+            <ul>
+                <li>The client initiates the handshake by sending a "Client Hello" message to the server.</li>
+                <li>This message includes the SSL/TLS version the client supports, a list of encryption algorithms, and a randomly generated number.</li>
+            </ul>
+        </li>
+        <li><strong>Step 2: Server Hello</strong>
+            <ul>
+                <li>The server responds with a "Server Hello" message, selecting the encryption algorithm from the list provided by the client and sending its SSL/TLS certificate.</li>
+                <li>The certificate contains the server's public key and is used by the client to verify the server’s identity.</li>
+            </ul>
+        </li>
+        <li><strong>Step 3: Server Certificate and Key Exchange</strong>
+            <ul>
+                <li>The server sends its SSL/TLS certificate, which includes the server's public key.</li>
+                <li>If required, the server may also send a "Server Key Exchange" message to help in key generation.</li>
+            </ul>
+        </li>
+        <li><strong>Step 4: Client Key Exchange</strong>
+            <ul>
+                <li>The client generates a "pre-master secret," encrypts it with the server's public key, and sends it to the server.</li>
+                <li>Both client and server use this "pre-master secret" to generate the same symmetric session keys, which will be used to encrypt the data exchanged during the session.</li>
+            </ul>
+        </li>
+        <li><strong>Step 5: Finished Messages</strong>
+            <ul>
+                <li>Both the client and server send a "Finished" message to each other, encrypted with the session key, indicating that the handshake is complete.</li>
+                <li>At this point, the SSL/TLS session is established, and secure communication can begin.</li>
+            </ul>
+        </li>
+        <li><strong>Step 6: Secure Communication</strong>
+            <ul>
+                <li>All subsequent data exchanged between the client and server is encrypted using the session keys established during the handshake.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>7. Example of HTTPS in Action</h2>
+    <ul>
+        <li>A user visits an e-commerce website (e.g., https://example.com) to make a purchase.</li>
+        <li>The user's browser initiates an HTTPS connection, starting the SSL/TLS handshake.</li>
+        <li>The server responds with its certificate, and the handshake process continues until a secure session is established.</li>
+        <li>The user enters their credit card information, which is encrypted by the browser before being sent to the server.</li>
+        <li>The server processes the payment securely and sends a confirmation back to the user's browser, also encrypted.</li>
+        <li>The entire transaction is protected from eavesdropping, tampering, and forgery due to the HTTPS protocol.</li>
+    </ul>
+</body>
+</html>
+```
+
+This explanation covers the basics and internal workings of HTTP/HTTPS and details the handshaking mechanism that ensures secure communication.

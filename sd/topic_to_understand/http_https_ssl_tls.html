@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP vs HTTPS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../common/styles.css" rel="stylesheet">
+    <script>
+        // Function to include an external HTML file
+        function loadHTML(file, elementId) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => document.getElementById(elementId).innerHTML = data)
+                .catch(error => console.error('Error loading HTML:', error));
+        }
+    </script>
+</head>
+
+<body onload="loadHTML('../../common/navbar.html', 'navbar-placeholder')">
+    <!-- Navbar Placeholder -->
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+
+        <div class="content">
+            <h3 class="section-title">What is HTTP/HTTPS?</h3>
+            <p>
+                <ul>
+                    <li><strong>HTTP (Hypertext Transfer Protocol):</strong>
+                        <ul>
+                            <li>An application-layer protocol used for transmitting hypermedia documents, such as HTML.</li>
+                            <li>HTTP is the foundation of data communication on the World Wide Web.</li>
+                            <li>It is a stateless protocol, meaning each request from a client to server is independent, and the server does not retain user state between requests.</li>
+                        </ul>
+                    </li>
+                    <li><strong>HTTPS (Hypertext Transfer Protocol Secure):</strong>
+                        <ul>
+                            <li>An extension of HTTP, where communication between the client and server is encrypted using TLS (Transport Layer Security) or SSL (Secure Sockets Layer).</li>
+                            <li>HTTPS ensures the confidentiality, integrity, and authenticity of data exchanged between the client and server.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <img src="../../images/http.PNG" alt="proxy1" style="display: block; margin: auto; width: 30%;">
+            </p>
+            <br>
+            <h3 class="section-title">How HTTP/HTTPS Works?</h3>
+            <p>
+                <ul>
+                    <li><strong>HTTP:</strong>
+                        <ul>
+                            <li>The client (usually a web browser) sends an HTTP request to the server, typically requesting a resource like a web page.</li>
+                            <li>The server processes the request and sends back an HTTP response, which usually contains the requested resource (e.g., an HTML file, image, etc.).</li>
+                            <li>HTTP operates over TCP (Transmission Control Protocol), usually on port 80.</li>
+                        </ul>
+                    </li>
+                    <li><strong>HTTPS:</strong>
+                        <ul>
+                            <li>HTTPS follows the same process as HTTP, but before data is sent, the client and server establish a secure connection using SSL/TLS.</li>
+                            <li>This secure connection ensures that the data exchanged is encrypted, preventing eavesdropping and tampering.</li>
+                            <li>HTTPS typically operates over port 443.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <br>
+            <h3 class="section-title">Why HTTP/HTTPS is Used?</h3>
+            <p>
+                <ul>
+                    <li><strong>HTTP:</strong>
+                        <ul>
+                            <li>To request and receive web resources such as HTML pages, images, and other multimedia content.</li>
+                            <li>Facilitates communication between web browsers and servers on the internet.</li>
+                            <li>Supports various methods like GET, POST, PUT, DELETE, etc., to interact with resources on the server.</li>
+                        </ul>
+                    </li>
+                    <li><strong>HTTPS:</strong>
+                        <ul>
+                            <li>To secure data transmission between clients and servers, protecting sensitive information (e.g., login credentials, payment details).</li>
+                            <li>Ensures that the data exchanged is not intercepted, tampered with, or forged by attackers.</li>
+                            <li>Provides authentication to confirm the identity of the communicating parties.</li>
+                        </ul>
+                    </li>
+                </ul>
+            
+            </p>
+            <br>
+            <h3 class="section-title">Where HTTP/HTTPS is Used?</h3>
+            <p>
+                <ul>
+                    <li><strong>HTTP:</strong>
+                        <ul>
+                            <li>Standard websites where security is not a major concern (e.g., public information sites, blogs).</li>
+                            <li>APIs and services that do not handle sensitive data.</li>
+                        </ul>
+                    </li>
+                    <li><strong>HTTPS:</strong>
+                        <ul>
+                            <li>Websites that handle sensitive data (e.g., banking sites, e-commerce platforms, login pages).</li>
+                            <li>APIs and services that require data integrity and confidentiality.</li>
+                            <li>Websites that need to comply with security standards and regulations (e.g., PCI-DSS for payment processing).</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <br>
+            <h3 class="section-title">SSL/TLS</h3>
+            <p>
+                <ul>
+                    <li><strong>SSL (Secure Sockets Layer):</strong>
+                        <ul>
+                            <li>SSL is a standard security technology for establishing an encrypted link between a server and a client—typically 
+                                a web server (website) and a browser or a mail server and a mail client (e.g., Outlook).</li>
+                        </ul>
+                    </li>
+                    <li><strong>TLS (Transport Layer Security):</strong>
+                        <ul>
+                            <li>TLS is the successor to SSL and is more secure and efficient.</li>
+                            <li>It is a cryptographic protocol designed to provide secure communication over a computer network.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <br>
+            <h3 class="section-title">SSL/TLS Handshake Process (In-Depth)</h3>
+            <p>
+                <ul>
+                    <li><strong>Step 1: Client Hello</strong>
+                        <ul>
+                            <li>The client initiates the handshake by sending a "Client Hello" message, which includes the SSL/TLS version it supports, 
+                                the list of encryption algorithms, and a randomly generated number.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Step 2: Server Hello</strong>
+                        <ul>
+                            <li>The server responds with a "Server Hello" message, selecting the encryption algorithm from the list provided by the client 
+                                and sending its SSL/TLS certificate. This certificate contains the server's public key.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Step 3: Server Certificate and Key Exchange</strong>
+                        <ul>
+                            <li>The server sends its SSL/TLS certificate, and if required, a "Server Key Exchange" message. 
+                                The client verifies the certificate to ensure the server's authenticity.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Step 4: Client Key Exchange</strong>
+                        <ul>
+                            <li>The client generates a "pre-master secret," encrypts it with the server's public key, and sends it to the server. 
+                                Both client and server use this pre-master secret to generate the session keys used to encrypt the data.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Step 5: Finished Messages</strong>
+                        <ul>
+                            <li>Both the client and server send a "Finished" message, encrypted with the session key, indicating that 
+                                the handshake is complete and a secure session is established.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Step 6: Secure Communication</strong>
+                        <ul>
+                            <li>All subsequent communication between the client and server is encrypted using the session keys established during the handshake.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <img src="../../images/ssl.PNG" alt="proxy1" style="display: block; margin: auto; width: 50%;">
+            </p>
+            <br>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 My Blog. All rights reserved.</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+/* styles.css */
+
+.code-container {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    padding: 15px;
+    position: relative;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.code-header {
+    font-size: 1rem;
+    color: #343a40;
+    margin-bottom: 10px;
+}
+
+.code-block {
+    background-color: #272822;
+    color: #f8f8f2;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    white-space: pre;
+    text-align: left; /* Ensure code text is left-aligned */
+    margin: 0; /* Ensure no extra margins affect alignment */
+    
+}
+
+.copy-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+}

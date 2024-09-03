@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="../../index.html">LearnSpace</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <!-- Home Button -->
+                <li class="nav-item" id="homeButton">
+                    <a class="nav-link" aria-current="page" href="../../index.html">Home</a>
+                </li>
+                <li class="nav-item" id="backButton">
+                    <a class="nav-link" href="javascript:history.back()">Back</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<script>
+    // Function to control the visibility of buttons
+    function controlNavbarButtons(showHome, showBack) {
+        const homeButton = document.getElementById('homeButton');
+        const backButton = document.getElementById('backButton');
+        
+        if (showHome) {
+            homeButton.style.display = 'list-item';
+        } else {
+            homeButton.style.display = 'none';
+        }
+
+        if (showBack) {
+            backButton.style.display = 'list-item';
+        } else {
+            backButton.style.display = 'none';
+        }
+    }
+</script>

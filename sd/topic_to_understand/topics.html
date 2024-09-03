@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Science</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../common/styles.css" rel="stylesheet">
+    <script>
+        // Function to include an external HTML file
+        function loadHTML(file, elementId) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => document.getElementById(elementId).innerHTML = data)
+                .catch(error => console.error('Error loading HTML:', error));
+        }
+    </script>
+</head>
+
+<body onload="loadHTML('../../../common/navbar.html', 'navbar-placeholder')">
+    <!-- Navbar Placeholder -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Main Content Area -->
+    <div class="container">
+        <!-- Search Bar -->
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="searchInput" placeholder="Search by Post Title or Topic"
+                aria-label="Search">
+            <button class="btn btn-outline-secondary" type="button" id="searchButton">Search</button>
+        </div>
+
+        <table class="table table-hover" id="postTable">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Building Blocks for Modern System Design</td>
+                    <td><a href="../topic_to_understand/building_blocks.html" class="btn btn-primary btn-sm">Read</a></td>
+                </tr>
+                <tr>
+                    <td>Scale from zero to millions of users</td>
+                    <td><a href="../topic_to_understand/scale_zero_to_million.html" class="btn btn-primary btn-sm">Read</a></td>
+                </tr>
+                <tr>
+                    <td>Back of the envelope estimation</td>
+                    <td><a href="../topic_to_understand/estimation.html" class="btn btn-primary btn-sm">Read</a></td>
+                </tr>
+                <tr>
+                    <td>Scalability</td>
+                    <td><a href="../topic_to_understand/scalability.html" class="btn btn-primary btn-sm">Read</a></td>
+                </tr>
+                <tr>
+                    <td>Performace vs Scalability</td>
+                    <td><a href="../topic_to_understand/performance_scalability.html" class="btn btn-primary btn-sm">Read</a></td>
+                </tr>
+                <tr>
+                    <td>CAP theorem</td>
+                    <td><a href="../topic_to_understand/cap.html" class="btn btn-primary btn-sm">Read</a></td>
+                </tr>
+                <tr>
+                    <td>Domain name system (DNS)</td>
+                    <td><a href="../topic_to_understand/dns.html" class="btn btn-primary btn-sm">Read</a></td>
+                </tr>
+                <tr>
+                    <td>Content delivery network (CDN)</td>
+                    <td><a href="../topic_to_understand/cdn.html" class="btn btn-primary btn-sm">Read</a></td>
+                </tr>
+                <tr>
+                    <td>Load balancer</td>
+                    <td><a href="../topic_to_understand/load_balancer.html" class="btn btn-primary btn-sm">Read</a></td>
+                </tr>
+                <tr>
+                    <td>Proxy vs Reverse proxy</td>
+                    <td><a href="../topic_to_understand/proxy_vs_reverse_proxy.html" class="btn btn-primary btn-sm">Read</a></td>
+                </tr>
+                <tr>
+                    <td>HTTP/HTTPS/SSL/TLS</td>
+                    <td><a href="../topic_to_understand/http_https_ssl_tls.html" class="btn btn-primary btn-sm">Read</a></td>
+                </tr>
+                <tr>
+                    <td>Application layer</td>
+                    <td><a href="../topic_to_understand/" class="btn btn-primary btn-sm">Read</a></td>
+                </tr>
+                <tr>
+                    <td>Database</td>
+                    <td><a href="../topic_to_understand/" class="btn btn-primary btn-sm">Read</a></td>
+                </tr>
+                <tr>
+                    <td>Cache</td>
+                    <td><a href="../topic_to_understand/" class="btn btn-primary btn-sm">Read</a></td>
+                </tr>
+                <tr>
+                    <td>Asynchronism</td>
+                    <td><a href="../topic_to_understand/" class="btn btn-primary btn-sm">Read</a></td>
+                </tr>
+                <tr>
+                    <td>Communication</td>
+                    <td><a href="../topic_to_understand/" class="btn btn-primary btn-sm">Read</a></td>
+                </tr>
+                <tr>
+                    <td>Security</td>
+                    <td><a href="../topic_to_understand/" class="btn btn-primary btn-sm">Read</a></td>
+                </tr>
+                
+            </tbody>
+            
+        </table>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 My Blog. All rights reserved.</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Sorting functionality
+        document.querySelectorAll('th').forEach(header => {
+            header.addEventListener('click', function () {
+                let table = header.parentElement.parentElement.parentElement;
+                let rows = Array.from(table.querySelectorAll('tbody tr'));
+                let index = Array.from(header.parentElement.children).indexOf(header);
+                let isAsc = header.classList.contains('asc');
+
+                rows.sort((rowA, rowB) => {
+                    let cellA = rowA.children[index].textContent.trim();
+                    let cellB = rowB.children[index].textContent.trim();
+
+                    return isAsc
+                        ? cellA.localeCompare(cellB)
+                        : cellB.localeCompare(cellA);
+                });
+
+                table.querySelector('tbody').append(...rows);
+
+                header.classList.toggle('asc', !isAsc);
+            });
+        });
+
+        // Search functionality
+        document.getElementById('searchButton').addEventListener('click', function () {
+            performSearch();
+        });
+
+        document.getElementById('searchInput').addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        function performSearch() {
+            let filter = document.getElementById('searchInput').value.toLowerCase();
+            let rows = document.querySelectorAll('#postTable tbody tr');
+
+            rows.forEach(row => {
+                let title = row.cells[0].textContent.toLowerCase(); // Corrected to index 0
+                let topic = row.cells[1].textContent.toLowerCase(); // Corrected to index 1
+
+                if (title.includes(filter) || topic.includes(filter)) {
+                    row.style.display = ''; // Show the row
+                } else {
+                    row.style.display = 'none'; // Hide the row
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Science</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../common/styles.css" rel="stylesheet">
+    <script>
+        // Function to include an external HTML file
+        function loadHTML(file, elementId) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => document.getElementById(elementId).innerHTML = data)
+                .catch(error => console.error('Error loading HTML:', error));
+        }
+    </script>
+    
+</head>
+
+<body onload="loadHTML('../common/navbar.html', 'navbar-placeholder')">
+    <!-- Navbar Placeholder -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Main Content Area -->
+    <div class="container">
+        <!-- Cards Section -->
+        <div id="postCards" class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Object-Oriented Programming</h5>
+                        <a href="object-oriented/" class="btn btn-primary">Read</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Lambdas, Stream API & Beyond</h5>
+                        <a href="exp_dev/" class="btn btn-primary">Read</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Collections</h5>
+                        <a href="collections/" class="btn btn-primary">Read</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Java Interview Handbook</h5>
+                        <a href="interview/qa.html" class="btn btn-primary">Read</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 My Blog. All rights reserved.</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Sorting functionality
+        document.querySelectorAll('th').forEach(header => {
+            header.addEventListener('click', function () {
+                let table = header.parentElement.parentElement.parentElement;
+                let rows = Array.from(table.querySelectorAll('tbody tr'));
+                let index = Array.from(header.parentElement.children).indexOf(header);
+                let isAsc = header.classList.contains('asc');
+
+                rows.sort((rowA, rowB) => {
+                    let cellA = rowA.children[index].textContent.trim();
+                    let cellB = rowB.children[index].textContent.trim();
+
+                    return isAsc
+                        ? cellA.localeCompare(cellB)
+                        : cellB.localeCompare(cellA);
+                });
+
+                table.querySelector('tbody').append(...rows);
+
+                header.classList.toggle('asc', !isAsc);
+            });
+        });
+
+        // Search functionality
+        document.getElementById('searchButton').addEventListener('click', function () {
+            performSearch();
+        });
+
+        document.getElementById('searchInput').addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        function performSearch() {
+            let filter = document.getElementById('searchInput').value.toLowerCase();
+            let rows = document.querySelectorAll('#postTable tbody tr');
+
+            rows.forEach(row => {
+                let title = row.cells[0].textContent.toLowerCase(); // Corrected to index 0
+                let topic = row.cells[1].textContent.toLowerCase(); // Corrected to index 1
+
+                if (title.includes(filter) || topic.includes(filter)) {
+                    row.style.display = ''; // Show the row
+                } else {
+                    row.style.display = 'none'; // Hide the row
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

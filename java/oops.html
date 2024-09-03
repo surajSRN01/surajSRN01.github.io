@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scalability in Systems</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="common/styles.css" rel="stylesheet">
+    <script>
+        // Function to include an external HTML file
+        function loadHTML(file, elementId) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => document.getElementById(elementId).innerHTML = data)
+                .catch(error => console.error('Error loading HTML:', error));
+        }
+    </script>
+</head>
+
+<body onload="loadHTML('common/navbar.html', 'navbar-placeholder')">
+    <!-- Navbar Placeholder -->
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+
+        <div class="content">
+            <h3 class="section-title">What is OOP's?</h3>
+            <p>Object-Oriented Programming (OOP) is a programming paradigm centered around the concept of "objects," which can contain data and methods to manipulate that data. 
+                OOP is based on several key principles that help to model real-world entities and their interactions in a more intuitive and maintainable way.
+            </p>
+
+            <h3 class="section-title">Building blocks of OOPs</h3>
+                <ul>
+                    <li><strong>Classes:</strong> <p>A class is a blueprint for creating objects. It defines the attributes and methods that the objects created from it will have.</p></li> 
+                    <li><strong>Objects :</strong> <p>An object is an instance of a class. It represents a real-world entity with attributes (data) and behaviors (methods).
+                        <br>For example, a Car object might have attributes like color, model, and speed, and behaviors like drive() and brake().</p></li>
+                    <li><strong>Methods :</strong> <p>Methods are functions defined within a class that describe the behaviors of the objects created from the class. 
+                        <br>They can modify the object’s state or perform actions with the object. 
+                        <br>They can accept parameters, return values, and are used to perform an action on an object of a class.</p>
+                    </li>
+                    <li><strong>Attributes :</strong><p>Attributes, also known as properties or fields, are variables that store data related to a class and its objects. </p></li>
+                </ul>
+            <br>
+            <h3 class="section-title">Principles of OOPs</h3>
+                <ul>
+                    <li><strong>Encapsulation:</strong> 
+                        <p>Encapsulation in OOP refers to binding data and the methods to manipulate that data together in a single unit—class.
+                           <br>Encapsulation is usually done to hide the state and representation of an object from the outside.  
+                        </p>
+                        <div class="collapsible-container">
+                            <button class="collapsible">Show/Hide Code</button>
+                            <div class="content">
+                                <pre><code>
+                                    class Car {
+                                        // Private fields (data encapsulation)
+                                        private String model;
+                                        private int year;
+                                    
+                                        // Constructor
+                                        public Car(String model, int year) {
+                                            this.model = model;
+                                            this.year = year;
+                                        }
+                                    
+                                        // Public methods (access control)
+                                        public String getModel() {
+                                            return model;
+                                        }
+                                    
+                                        public void setModel(String model) {
+                                            this.model = model;
+                                        }
+                                    
+                                        public int getYear() {
+                                            return year;
+                                        }
+                                    
+                                        public void setYear(int year) {
+                                            this.year = year;
+                                        }
+                                    }
+
+                                </code></pre>
+                            </div>
+                        </div>
+                        <script src="common/script.js"></script>
+                        <p>In the above example, the model and year fields are encapsulated within the Car class. They are private, meaning they cannot be accessed directly from outside the class. Access to these fields is controlled through public getter and setter methods.</p>
+                    </li> 
+                    <li><strong>Abstraction :</strong> 
+                        <p>Abstraction is the concept of hiding the complex implementation details of a system and exposing only the essential features or functionalities.
+                        <br>The main goal of abstraction is to reduce complexity by allowing the user to focus on "what" an object does rather than "how" it does it.</p>
+                        <div class="collapsible-container">
+                            <button class="collapsible">Show/Hide Code</button>
+                            <div class="content">
+                                <pre><code>
+                                    abstract class Vehicle {
+                                        // Abstract method (no implementation)
+                                        abstract void startEngine();
+                                    
+                                        // Concrete method
+                                        void stopEngine() {
+                                            System.out.println("Engine stopped.");
+                                        }
+                                    }
+
+                                    class Car extends Vehicle {
+                                        @Override
+                                        void startEngine() {
+                                            System.out.println("Car engine started.");
+                                        }
+                                    }
+
+                                    public class Main {
+                                        public static void main(String[] args) {
+                                            Vehicle myCar = new Car();
+                                            myCar.startEngine();  // Output: Car engine started.
+                                            myCar.stopEngine();   // Output: Engine stopped.
+                                        }
+                                    }
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <script src="common/script.js"></script>
+                        <p>In the above example, the Vehicle class provides an abstract concept of a vehicle with an abstract method startEngine(). The Car class provides a concrete implementation of this method. The user interacts with the Vehicle class at a higher level, focusing on the functionality (starting and stopping the engine) without needing to know the details of how the engine is started.</p>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Aspect</th>
+                                    <th>Encapsulation</th>
+                                    <th>Abstraction</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Purpose</td>
+                                    <td>To hide the internal state and protect data integrity by restricting direct access.</td>
+                                    <td>To hide complexity by exposing only essential features and functionality.</td>
+                                </tr>
+                                <tr>
+                                    <td>Focus</td>
+                                    <td>Protecting and controlling access to data.</td>
+                                    <td>Simplifying interaction by focusing on what the object does.</td>
+                                </tr>
+                                <tr>
+                                    <td>Implementation</td>
+                                    <td>Achieved through access modifiers (private, public, protected).</td>
+                                    <td>Achieved through abstract classes and interfaces.</td>
+                                </tr>
+                                <tr>
+                                    <td>Visibility</td>
+                                    <td>Internal details are hidden, but the functionality is exposed through public methods.</td>
+                                    <td>Internal implementation is hidden, and only relevant features are exposed.</td>
+                                </tr>
+                                <tr>
+                                    <td>Example</td>
+                                    <td>Fields are private, accessed via public getters/setters.</td>
+                                    <td>Abstract methods are declared, implemented in derived classes.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </li>
+                    <br>
+                    <li><strong>Inheritance :</strong> 
+                        <p>It is the mechanism in Java by which one class is allowed to inherit the features(fields and methods) of another class. 
+                            <br>In Java, Inheritance means creating new classes based on existing ones. A class that inherits from another class can reuse the methods and fields of that class. 
+                            <br>In addition, you can add new fields and methods to your current class as well. 
+                            <br>In Java, inheritance is implemented using the extends keyword. A subclass inherits all non-private fields and methods from its superclass.
+                        </p>
+                        “when do we use inheritance?” Wherever we come across an IS-A relationship between objects, we can use inheritance.
+                                <img src="images/is-a.PNG" alt="dns-hierarchy" style="display: block; margin: auto;">
+                                Remember, we cannot use inheritance if an IS-A relationship doesn’t exist between classes.<br><br>
+                        <b>Types of inheritance:</b>
+                        <ol>
+                                <li><strong>Single inheritance: </strong>A class inherits from one superclass.<br>
+                                    Example: A fuel car IS-A vehicle
+                                    <img src="images/single-inheritance.PNG" alt="dns-hierarchy" style="display: block; margin: auto;">
+                                </li>
+                                <li><strong>Multilevel Inheritance: </strong>A class is derived from a class that is also derived from another class.<br>
+                                    Example:<br>
+                                    A fuel car IS-A vehicle<br>
+                                    A gasoline car IS-A fuel car
+                                    <img src="images/multilevel-inheritance.PNG" alt="dns-hierarchy" style="display: block; margin: auto;">
+                                </li>
+                                <li><strong>Hierarchical Inheritance: </strong>Multiple classes inherit from a single superclass.<br>
+                                    Example:<br>
+                                    A fuel car IS-A vehicle<br>                                
+                                    An electric car IS-A vehicle<br>
+                                    <img src="images/hierarchical-inheritance.PNG" alt="dns-hierarchy" style="display: block; margin: auto;">
+                                </li>
+                                <li><strong>Multiple Inheritance: </strong>When a class is derived from more than one base class, i.e., when a class has more than one immediate parent class, it is called multiple inheritance.<br>
+                                    Exmple: <br>
+                                    The hybrid car IS-A fuel car.<br>
+                                    The hybrid car IS-A electric car as well.
+                                    <img src="images/multiple-inheritance.PNG" alt="dns-hierarchy" style="display: block; margin: auto;">
+                                    Java does not support multiple inheritance with classes to avoid ambiguity (the diamond problem), but it does allow a class to implement multiple interfaces.
+                                </li>
+                                <li><strong>Hybrid Inheritance: </strong>A type of inheritance that is a combination of more than one type of inheritance is called hybrid inheritance.<br>
+                                    Exmple: <br>
+                                    A fuel car IS-A vehicle.<br>
+                                    An electric car IS-A vehicle.<br>
+                                    A hybrid car IS-A fuel car and IS-A electric car.
+                                    <img src="images/hybrid-inheritance.PNG" alt="dns-hierarchy" style="display: block; margin: auto;">
+                                </li>
+                        </ol>
+                        <p><b>Note:</b><br>
+                            - If a subclass defines a field with the same name as a field in its superclass, the field in the subclass shadows the field in the superclass. <br>The superclass field can still be accessed using <b>super.fieldName</b>.<br>
+                            - Constructors are not inherited. However, a subclass constructor can call a superclass constructor using super().<br>
+                            - When an object is created, the constructors of the superclass are called before the subclass constructors, creating a "chain" of constructor calls.<br>
+                            - final class: A class declared as final cannot be extended.<br>
+                            - final method: A method declared as final cannot be overridden by subclasses.<br>
+                        </p>
+                        <div class="collapsible-container">
+                            <button class="collapsible">Show/Hide Code</button>
+                            <div class="content">
+                                <pre>
+                                    <code>
+                                        // Base class (Parent)
+                                        class Vehicle {
+                                            private String name;
+                                            private String model;
+                                            Vehicle(String name, String model) {
+                                                this.name = name;
+                                                this.model = model;
+                                            }
+                                            public void getName() {
+                                                System.out.print("The car is a " + name + " " + model);
+                                            }
+                                        }
+                                        
+                                        // Single inheritance
+                                        // FuelCar class extending from Vehicle class
+                                        // Derived class (Child)
+                                        class FuelCar extends Vehicle {
+                                            private String combustType;
+                                            FuelCar(String name, String model, String combustType) {
+                                                super(name, model);
+                                                this.combustType = combustType;
+                                            }
+                                            public void getFuelCar() {
+                                                getName();
+                                                System.out.print(", combust type is " + combustType);
+                                            }
+                                        }
+                                        
+                                        // Hierarchical inheritance
+                                        // Alongside the FuelCar class, the ElectricCar class is also extending from Vehicle class
+                                        // Another Derived class (Child)
+                                        class ElectricCar extends Vehicle {
+                                            private String batteryPower;
+                                            ElectricCar(String name, String model, String batteryPower) {
+                                                super(name, model);
+                                                this.batteryPower = batteryPower;
+                                            }
+                                            public void getElectricCar() {
+                                                getName();
+                                                System.out.print(", battery power is " + batteryPower);
+                                            }
+                                        }
+                                        
+                                        // Multi-level inheritance
+                                        // GasolineCar class is derived from the FuelCar class, which is further derived from the Vehicle class
+                                        // Derived class (Grandchild)
+                                        class GasolineCar extends FuelCar {
+                                            private String combustType;
+                                            private String gasCapacity;
+                                            GasolineCar(String name, String model, String combustType, String gasCapacity) {
+                                                super(name, model, combustType);
+                                                this.gasCapacity = gasCapacity;
+                                            }
+                                            public void getGasolineCar() {
+                                                getName();
+                                                System.out.print(", gas capacity is " + gasCapacity);
+                                            }
+                                        }
+                                        
+                                        // Java does not support Multiple inheritance via classes
+                                        
+                                        // main
+                                        public class main
+                                        {
+                                            public static void main(String[] args) {
+                                                System.out.println("Single inheritance:");
+                                                FuelCar Fuel = new FuelCar("Honda", "Accord", "Petrol");
+                                                Fuel.getFuelCar();
+                                                System.out.println("\n");
+                                        
+                                                System.out.println("Hierarchical inheritance:");
+                                                ElectricCar Electric = new ElectricCar("Tesla", "ModelX", "200MWH");
+                                                Electric.getElectricCar();
+                                                System.out.println("\n");
+                                        
+                                                System.out.println("Multi-Level inheritance:");
+                                                GasolineCar Gasoline = new GasolineCar("Toyota", "Corolla", "Gasoline", "30 liters");
+                                                Gasoline.getGasolineCar();
+                                                
+                                                
+                                                System.out.println("\n");
+                                                System.out.println("Java does not support Multiple Inheritance through classes");
+                                            }
+                                        }
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <script src="common/script.js"></script>
+                    </li>
+                    <li><strong>Polymorphism :</strong>
+                        <p></p>
+                    </li>
+                </ul>
+            <br>
+            <h3 class="section-title">Interview Questions and Answers</h2>
+            <div class="interview-question">
+                <strong>Q1: </strong>
+            </div>
+            <div class="interview-answer">
+                <p><strong>Answer:</strong>
+                    <ul>
+                        <li></li>
+                    </ul>
+                    </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 My Blog. All rights reserved.</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

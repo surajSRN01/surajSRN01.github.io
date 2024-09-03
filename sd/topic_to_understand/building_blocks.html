@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Blocks of SD</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../common/styles.css" rel="stylesheet">
+    <script>
+        // Function to include an external HTML file
+        function loadHTML(file, elementId) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => document.getElementById(elementId).innerHTML = data)
+                .catch(error => console.error('Error loading HTML:', error));
+        }
+    </script>
+</head>
+
+<body onload="loadHTML('../../common/navbar.html', 'navbar-placeholder')">
+    <!-- Navbar Placeholder -->
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+
+        <div class="content">
+            <h3 class="section-title">System design building blocks using cloud service</h3>
+            <ol>
+                <li>
+                    <strong><a href="../topic_to_understand/dns.html" target="_blank">Domain Name System (DNS):</a></strong> 
+                    <p>DNS is a system that translates human-readable domain names into IP addresses, making it essential for locating and accessing websites on the internet. 
+                        <br>Tools like <em>AWS Route 53</em> or <em>Google Cloud DNS</em> are commonly used for implementing DNS in cloud services.</p>
+                </li>
+                
+                <li>
+                    <strong><a href="../topic_to_understand/load_balancer.html" target="_blank">Load Balancers:</a></strong> 
+                    <p>A load balancer distributes incoming network traffic across multiple servers, ensuring optimal resource use, reducing server overload, and improving system reliability by bypassing failed servers.
+                        <br>In cloud environments, services like <em>AWS Elastic Load Balancing (ELB)</em> and <em>Google Cloud Load Balancing</em> are often utilized.</p>
+                </li>
+                
+                <li>
+                    <strong>Databases:</strong> 
+                    <p>This block involves storing, retrieving, modifying, and deleting data as part of various data-processing tasks. The discussion includes database types, replication, partitioning, and analysis of distributed databases. 
+                        <br>Popular cloud databases include <em>Amazon RDS</em>, <em>Google Cloud SQL</em>, and <em>Azure Cosmos DB</em>.</p>
+                </li>
+                
+                <li>
+                    <strong>Key-Value Store:</strong> 
+                    <p>A non-relational database that stores data in key-value pairs. This section explains the design of a key-value store, focusing on scalability, durability, and configurability. 
+                        <br>Common tools in cloud services include <em>Amazon DynamoDB</em> and <em>Redis</em>.</p>
+                </li>
+                
+                <li>
+                    <strong><a href="../topic_to_understand/cdn.html" target="_blank">Content Delivery Network (CDN):</a></strong> 
+                    <p>A CDN efficiently delivers content such as videos, images, audio, and web pages to end-users while minimizing latency and reducing the burden on data centers. 
+                        <br>Cloud-based CDNs like <em>Amazon CloudFront</em> and <em>Azure CDN</em> are widely used.</p>
+                </li>
+                
+                <li>
+                    <strong>Sequencer:</strong> 
+                    <p>This block focuses on designing a system for generating unique IDs, with an emphasis on maintaining causality. 
+                        <br>Techniques such as using <em>UUIDs</em> or <em>Snowflake</em> ID generators (used by Twitter) are explored.</p>
+                </li>
+                
+                <li>
+                    <strong>Service Monitoring:</strong> 
+                    <p>Monitoring systems are critical in distributed systems for analyzing performance and alerting stakeholders in case of issues. 
+                        <br>Here, both server-side and client-side monitoring systems are built using tools like <em>Amazon CloudWatch</em>, <em>Prometheus</em>, and <em>Grafana</em>.</p>
+                </li>
+                
+                <li>
+                    <strong>Distributed Caching:</strong> 
+                    <p>In this block, we design a distributed caching system where multiple cache servers coordinate to store frequently accessed data. 
+                        <br>Tools like <em>Amazon ElastiCache</em> (for Redis or Memcached) are used for implementing distributed caching in the cloud.</p>
+                </li>
+                
+                <li>
+                    <strong>Distributed Messaging Queue:</strong> 
+                    <p>This section covers the design of a messaging queue consisting of multiple servers, facilitating communication between producers and consumers. It helps with independent scalability and reliability. 
+                        <br>Cloud services like <em>Amazon SQS</em> and <em>Apache Kafka</em> are commonly used.</p>
+                </li>
+                
+                <li>
+                    <strong>Publish-Subscribe System:</strong> 
+                    <p>The publish-subscribe (pub-sub) system is an asynchronous communication method popular in serverless and microservices architectures. 
+                        <br>Tools like <em>Google Cloud Pub/Sub</em> and <em>Amazon SNS</em> are commonly used in the cloud for implementing pub-sub systems.</p>
+                </li>
+                
+                <li>
+                    <strong>Rate Limiter:</strong> 
+                    <p>This block discusses the design of a system that throttles incoming requests based on predefined limits, protecting services from excessive usage. 
+                        <br>Rate limiting can be implemented using <em>API Gateway</em> services like <em>Amazon API Gateway</em> with built-in rate-limiting features.</p>
+                </li>
+                
+                <li>
+                    <strong>Blob Store:</strong> 
+                    <p>A storage solution for unstructured data, such as multimedia files and binary executables. 
+                        <br>Cloud-based blob storage solutions include <em>Amazon S3</em> and <em>Azure Blob Storage</em>.</p>
+                </li>
+                
+                <li>
+                    <strong>Distributed Search:</strong> 
+                    <p>This block covers the design of a search system that processes user queries and returns relevant content quickly. The discussion includes components like crawling, indexing, and searching.
+                        <br>Tools like <em>Elasticsearch</em> and <em>Amazon OpenSearch</em> are commonly used.</p>
+                </li>
+                
+                <li>
+                    <strong>Distributed Logging:</strong> 
+                    <p>Designing a system for efficient logging in a distributed environment is crucial due to the I/O-intensive nature of logging operations. 
+                        <br>Cloud-based logging tools like <em>Amazon CloudWatch Logs</em>, <em>Google Cloud Logging</em> and <em>Elasticsearch</em> are often utilized for this purpose.</p>
+                </li>
+                <li>
+                    <strong>Distributed Tracing:</strong> 
+                    <p>Distributed tracing helps in tracking the flow of requests across different services in a distributed system, allowing developers and operators to pinpoint performance bottlenecks and troubleshoot issues. 
+                        <br>Cloud-based tracing tools like <em>AWS X-Ray</em>, <em>Google Cloud Trace</em> and <em>Zipkin</em> are often utilized for this purpose.</p>
+                </li>
+                
+                <li>
+                    <strong>Distributed Task Scheduling:</strong> 
+                    <p>This block focuses on designing a distributed task scheduler that allocates resources to tasks, ensuring that task-level and system-level goals are met. 
+                        <br>Cloud services like <em>Amazon Step Functions</em> and <em>Apache Airflow</em> are commonly used for task scheduling.</p>
+                </li>
+                
+                <li>
+                    <strong>Sharded Counters:</strong> 
+                    <p>Sharded counters are used for efficiently counting millions of concurrent read/write requests, such as likes on social media posts. Techniques for implementing sharded counters include using distributed databases or specialized tools like <em>Google Cloud Spanner</em>.</p>
+                </li>
+            </ol>
+            <br>
+            
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 My Blog. All rights reserved.</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
